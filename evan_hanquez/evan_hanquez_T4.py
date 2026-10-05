@@ -126,9 +126,75 @@ def fenetre_toit(x, y, e, nb_imm):
     end_fill()
     penup()
 
+def rue_evan(x, y, a, b):       
+    """
+    Dessine une rue avec des immeubles.
+    - x, y : Coin inférieur gauche de la rue
+    - a : marge avec le bord de l'ecran(longueur de la rue)
+    - b : marge avec le bord de l'ecran(largeur de la rue)
+    """
+    penup()
+    goto(x, y)
+    setheading(0)
+    color("black", "grey")
+    pendown()
+    begin_fill()
+    for _ in range(2):
+        forward(a)
+        left(90)
+        forward(b)  # Hauteur de la rue
+        left(90)
+    end_fill()
+
 
 ## TESTS DES FONCTIONS INDIVIDUELLES    
-fenetre_evan(-150, 0, 100, 4)
-porte_evan(-50, 0, 50, 3)
+fenetre_evan(-150, 0, 100, 10)
+porte_evan(-50, 0, 50, 10)
 toit(50, 0, 120, 7)
 fenetre_toit(50, 0, 120, 7)
+
+
+def rue_evan(x, y, a, b):       
+    """
+    Dessine une rue avec deux voies adaptées à la taille de l'écran.
+    - x, y : Coin inférieur gauche de la rue
+    - a : Marge avec le bord droit
+    - b : Hauteur totale de la rue
+    """
+    longueur = (window_width() / 2 - a) - x
+    
+    # 1. Fond de la rue
+    penup()
+    goto(x, y)
+    setheading(0)
+    color("black", "grey")
+    pendown()
+    begin_fill()
+    for _ in range(2):
+        forward(longueur)
+        left(90)
+        forward(b)
+        left(90)
+    end_fill()
+    # 2. Ligne discontinue blanche
+    penup()
+    goto(x, y + b / 2)  # Positionnement au milieu de la hauteur
+    color("yellow")
+    pensize(2)
+    # Trace des pointillés jusqu'au bout de la rue
+    pos_x = x
+    while pos_x < (x + longueur):
+        pendown()
+        forward(15)  # Trait
+        penup()
+        forward(10)  # Espace
+        pos_x += 25
+
+
+# appel rue (adapté à la taille de l'écran)
+a = 20
+b = 60
+x_depart = -window_width() / 2 + a
+y_depart = -window_height() / 2 + a
+
+rue_evan(x_depart, y_depart, a, b)
