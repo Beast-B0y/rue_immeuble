@@ -13,217 +13,6 @@ colormode(255)  # Mode RVB de 0 a 255
 
 temps_pause = 3
 
-
-# ==============================================================================
-# MODULE EVAN
-# ==============================================================================
-
-
-def fenetre_evan(x, y, taille, nombre_immeubles):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "lightblue")
-    pensize(max(1, int(11 - nombre_immeubles)))
-    pendown()
-    begin_fill()
-    for _ in range(4):
-        forward(taille)
-        left(90)
-    end_fill()
-    penup()
-
-    goto(x + taille / 2, y)
-    color("brown")
-    pensize(max(1, int(0.75 * (11 - nombre_immeubles))))
-    setheading(90)
-    pendown()
-    forward(taille)
-    penup()
-
-    goto(x, y + taille / 2)
-    setheading(0)
-    pendown()
-    forward(taille)
-    penup()
-
-
-def porte_evan(x, y, taille, nombre_immeubles):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "grey")
-    pensize(max(1, int(11 - nombre_immeubles)))
-    pendown()
-    begin_fill()
-    for _ in range(2):
-        forward(taille)
-        left(90)
-        forward(taille * 2)
-        left(90)
-    end_fill()
-    penup()
-
-    goto(x + taille * 0.1, y + taille * 0.9)
-    color("black", "lightblue")
-    pensize(max(1, int(0.5 * (11 - nombre_immeubles))))
-    setheading(0)
-    pendown()
-    begin_fill()
-    for _ in range(2):
-        forward(taille * 0.8)
-        left(90)
-        forward(taille * 0.9)
-        left(90)
-    end_fill()
-    penup()
-
-    goto(x + taille * 0.1, y + taille * 0.6)
-    color("black")
-    pensize(max(1, int(0.5 * (11 - nombre_immeubles))))
-    setheading(0)
-    pendown()
-    forward(taille * 0.2)
-    penup()
-
-
-# ==============================================================================
-# MODULE LORIS
-# ==============================================================================
-
-
-def fenetre_loris(x, y, taille, nombre_immeubles):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "lightgreen")
-    pensize(2)
-    pendown()
-    begin_fill()
-    for _ in range(4):
-        forward(taille)
-        left(90)
-    end_fill()
-    penup()
-
-
-def porte_loris(x, y, taille, nombre_immeubles):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "pink")
-    pensize(2)
-    pendown()
-    begin_fill()
-    for _ in range(2):
-        forward(taille)
-        left(90)
-        forward(taille * 2)
-        left(90)
-    end_fill()
-    penup()
-
-
-# ==============================================================================
-# MODULE REMY
-# ==============================================================================
-
-
-def fenetre_remy(x, y, taille, nombre_immeubles):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "deepskyblue")
-    pensize(2)
-    pendown()
-    begin_fill()
-    for _ in range(4):
-        forward(taille)
-        left(90)
-    end_fill()
-    penup()
-
-
-def porte_remy(x, y, taille, nombre_immeubles):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "red")
-    pensize(2)
-    pendown()
-    begin_fill()
-    for _ in range(2):
-        forward(taille)
-        left(90)
-        forward(taille * 2)
-        left(90)
-    end_fill()
-    penup()
-
-
-# ==============================================================================
-# TOITS ET DECOR
-# ==============================================================================
-
-
-def toit_triangle(x, y, largeur_immeuble):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "red")
-    pensize(2)
-    pendown()
-    begin_fill()
-    for _ in range(3):
-        forward(largeur_immeuble)
-        left(120)
-    end_fill()
-    penup()
-
-    rayon = largeur_immeuble / 10
-    goto(x + (largeur_immeuble / 2), y + (largeur_immeuble / 4))
-    setheading(0)
-    color("black", "lightblue")
-    pensize(1)
-    pendown()
-    begin_fill()
-    circle(rayon)
-    end_fill()
-    penup()
-
-
-def toit_plat(x, y, largeur_immeuble):
-    penup()
-    goto(x, y)
-    setheading(0)
-    color("black", "darkgray")
-    pensize(2)
-    pendown()
-    begin_fill()
-    for _ in range(2):
-        forward(largeur_immeuble)
-        left(90)
-        forward(12)
-        left(90)
-    end_fill()
-    penup()
-
-
-def toit_arrondi(x, y, largeur_immeuble):
-    penup()
-    goto(x + largeur_immeuble, y)
-    setheading(90)
-    color("black", "darkorange")
-    pensize(2)
-    pendown()
-    begin_fill()
-    circle(largeur_immeuble / 2, 180)
-    setheading(0)
-    forward(largeur_immeuble)
-    end_fill()
-    penup()
-
-
 def tracer_ciel_et_astre(largeur_ecran, hauteur_ecran, marge_cadre):
     est_nuit = random.choice([True, False])
     y_astro = (hauteur_ecran / 2) - marge_cadre - 80
@@ -351,16 +140,12 @@ def tracer_immeubles(
     x_immeuble = x_rue + marge_extremite_rue
     y_immeuble = y_rue + hauteur_rue
 
-    portes_dispo = [porte_evan, porte_loris, porte_remy]
-    fenetres_dispo = [fenetre_evan, fenetre_loris, fenetre_remy]
-    toits_dispo = [toit_triangle, toit_plat, toit_arrondi]
 
     for i in range(nombre_immeubles):
         nombre_niveaux = random.randint(1, nombre_immeubles)
         position_porte = random.randint(1, 3)
 
         couleur_bat = liste_couleurs[i]
-        fonction_porte = random.choice(portes_dispo)
 
         for niveau in range(nombre_niveaux):
             y_niveau = y_immeuble + (niveau * hauteur_etage)
@@ -368,34 +153,7 @@ def tracer_immeubles(
                 x_immeuble, y_niveau, largeur_immeuble, hauteur_etage, couleur_bat
             )
 
-            for emplacement in range(1, 4):
-                x_elem = (
-                    x_immeuble
-                    + emplacement * marge_interne_f
-                    + (emplacement - 1) * taille
-                )
-
-                if niveau == 0:
-                    if emplacement == position_porte:
-                        fonction_porte(
-                            x_elem, y_niveau, taille, nombre_immeubles
-                        )
-                    else:
-                        y_elem = y_niveau + (hauteur_etage - taille) / 2
-                        fonction_fenetre = random.choice(fenetres_dispo)
-                        fonction_fenetre(
-                            x_elem, y_elem, taille, nombre_immeubles
-                        )
-                else:
-                    y_elem = y_niveau + (hauteur_etage - taille) / 2
-                    fonction_fenetre = random.choice(fenetres_dispo)
-                    fonction_fenetre(x_elem, y_elem, taille, nombre_immeubles)
-
         y_sommet = y_immeuble + (nombre_niveaux * hauteur_etage)
-
-        fonction_toit = random.choice(toits_dispo)
-        fonction_toit(x_immeuble, y_sommet, largeur_immeuble)
-
         x_immeuble += largeur_immeuble + espace_entre_immeubles
 
 
