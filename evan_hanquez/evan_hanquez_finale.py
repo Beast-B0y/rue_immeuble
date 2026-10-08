@@ -445,3 +445,4 @@ while True:
     update()
     time.sleep(temps_pause)
     clear()
+
