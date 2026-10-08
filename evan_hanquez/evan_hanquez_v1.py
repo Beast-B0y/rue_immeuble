@@ -6,7 +6,7 @@ Fichier : evan_hanquez_v2.py
 """
 
 from turtle import *
-import random
+from random import * 
 import time
 
 # ==============================================================================
@@ -101,6 +101,7 @@ marge_cadre = 30  # 'a'
 hauteur_rue = 60  # 'b'
 
 while True:
+    nombre_immeubles = randint(3,10)
     largeur_ecran = window_width()  # 'l'
     hauteur_ecran = window_height()  # 'h'
     x_depart = -largeur_ecran / 2 + marge_cadre  # -l/2 + a
