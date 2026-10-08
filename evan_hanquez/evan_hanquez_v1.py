@@ -1,7 +1,7 @@
 """
 Projet Rue d'Immeubles - Version 2
 Nom : Evan Hanquez
-Classe : Première NSI
+Classe : Terminale  NSI
 Fichier : evan_hanquez_v2.py
 """
 
